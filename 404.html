@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anchor | 404 - Lost at Sea</title>
+  <meta name="description" content="The page you're looking for has sailed away. Navigating Discord Management to New Depths." />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Reuse existing styles from comingsoon.html */
+    /* Accessibility: Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    /* Global Reset */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      background: #0a0a0a;
+      min-height: 100vh;
+      font-family: 'Open Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      color: #fff;
+    }
+
+    /* Wave Background */
+    .wave-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, #284ad1, #31479f);
+      opacity: 0.3;
+      animation: wave 20s linear infinite;
+      transform-origin: center bottom;
+    }
+    .wave:nth-child(2) {
+      animation-delay: -10s;
+      opacity: 0.2;
+    }
+    .wave:nth-child(3) {
+      animation-delay: -15s;
+      opacity: 0.1;
+    }
+    @keyframes wave {
+      0% {
+        transform: translateX(0) scaleY(1);
+      }
+      50% {
+        transform: translateX(-25%) scaleY(0.95);
+      }
+      100% {
+        transform: translateX(-50%) scaleY(1);
+      }
+    }
+
+    /* Main Content Container */
+    main.container {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Logo Styling and Animation */
+    .logo-container {
+      animation: anchor-sway 4s ease-in-out infinite;
+      margin-bottom: 1.5rem;
+    }
+    @keyframes anchor-sway {
+      0%, 100% {
+        transform: translateX(-8px) rotate(-2deg);
+      }
+      50% {
+        transform: translateX(8px) rotate(2deg);
+      }
+    }
+    .logo {
+      max-width: 150px;
+      height: auto;
+      filter: drop-shadow(0 0 20px rgba(40, 74, 209, 0.5));
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .logo:hover {
+      filter: drop-shadow(0 0 25px rgba(40, 74, 209, 0.7));
+      transform: scale(1.03);
+    }
+
+    /* 404 Text Styling */
+    .error-code {
+      font-size: 4rem;
+      margin: 1rem 0;
+      letter-spacing: 3px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: fade-in 1s ease-out forwards 0.5s;
+      font-family: 'Montserrat', sans-serif;
+      color: #ff5555;
+    }
+    .error-message {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: slide-up 0.8s ease-out forwards 0.7s;
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slide-up {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Return Home Button */
+    .return-home {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(255, 85, 85, 0.2);
+      border: 2px solid #ff5555;
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      transform: scale(0.95);
+      animation: button-pop 0.5s ease-out forwards 1s;
+    }
+    .return-home:hover {
+      background: rgba(255, 85, 85, 0.3);
+      transform: scale(1) translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 85, 85, 0.2);
+    }
+    @keyframes button-pop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Fish Animation (Reused from comingsoon) */
+    .fish-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .fish {
+      position: absolute;
+      right: -100px;
+      width: 50px;
+      height: auto;
+      animation: swim 10s linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes swim {
+      0% { transform: translateX(100px); }
+      100% { transform: translateX(calc(-100vw - 100px)); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .logo { max-width: 100px; }
+      .error-code { font-size: 3rem; }
+      .error-message { font-size: 1.4rem; }
+      main.container { padding: 1.5rem; margin: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Wave Background -->
+  <div class="wave-container" aria-hidden="true">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="anchor-removebg-preview.png" alt="Anchor Logo" class="logo" />
+    </div>
+    
+    <!-- Error Content -->
+    <h1 class="error-code">404</h1>
+    <p class="error-message">Page Lost at Sea</p>
+    <a href="/index.html" class="return-home">Return to Safe Waters</a>
+  </main>
+
+  <!-- Fish Animation -->
+  <div class="fish-container" aria-hidden="true">
+    <img src="fish-svgrepo-com.svg" alt="Swimming fish" class="fish" />
+    <img src="fish-svgrepo-com.svg" alt="Swimming fish" class="fish" />
+    <img src="fish-svgrepo-com.svg" alt="Swimming fish" class="fish" />
+  </div>
+</body>
+</html> 
