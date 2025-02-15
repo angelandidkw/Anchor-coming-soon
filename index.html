@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anchor | Coming Soon</title>
-  <!-- Google Fonts -->
+  <meta name="description" content="Anchor Bot - Your automated assistant for Discord server management and moderation" />
+  <meta name="keywords" content="Discord bot, server management, automation, moderation, Anchor Bot" />
+  <meta name="author" content="Gio" />
+  <title>Anchor Bot</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;700&display=swap"
     rel="stylesheet"
   />
   <style>
-    /* Accessibility: Reduce motion for users who prefer it */
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Accessibility: Reduce motion */
     @media (prefers-reduced-motion: reduce) {
       * {
         animation-duration: 0.001ms !important;
@@ -19,36 +28,37 @@
       }
     }
 
-    /* Global Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     /* Body Styling */
     body {
       background: #0a0a0a;
       min-height: 100vh;
-      font-family: 'Open Sans', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
       position: relative;
+      overflow-x: hidden;
       color: #fff;
     }
 
     /* Wave Background */
     .wave-container {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
+      z-index: -2;
+    }
+
+    .gradient-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
       z-index: -1;
     }
+
     .wave {
       position: absolute;
       bottom: 0;
@@ -60,239 +70,536 @@
       animation: wave 20s linear infinite;
       transform-origin: center bottom;
     }
+
     .wave:nth-child(2) {
       animation-delay: -10s;
       opacity: 0.2;
     }
+
     .wave:nth-child(3) {
       animation-delay: -15s;
       opacity: 0.1;
     }
+
     @keyframes wave {
-      0% {
-        transform: translateX(0) scaleY(1);
-      }
-      50% {
-        transform: translateX(-25%) scaleY(0.95);
-      }
-      100% {
-        transform: translateX(-50%) scaleY(1);
-      }
+      0% { transform: translateX(0) scaleY(1); }
+      50% { transform: translateX(-25%) scaleY(0.95); }
+      100% { transform: translateX(-50%) scaleY(1); }
     }
 
-    /* Main Content Container */
-    .container {
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 20px;
+    /* Header (Navigation) */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 80px;
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20px);
-      }
-    }
-
-    /* Logo Styling and Animation */
-    .logo-container {
-      animation: anchor-sway 4s ease-in-out infinite;
-      margin-bottom: 1.5rem;
-    }
-    
-    @keyframes anchor-sway {
-      0%, 100% {
-        transform: translateX(-8px) rotate(-2deg);
-      }
-      50% {
-        transform: translateX(8px) rotate(2deg);
-      }
-    }
-
-    /* Logo Styling and Animation */
-        .logo {
-          max-width: 150px;  /* Changed from 300px to 150px */
-          height: auto;
-          filter: drop-shadow(0 0 20px rgba(40, 74, 209, 0.5));
-          transition: all 0.3s ease;
-        }
-    
-        /* For mobile devices */
-        @media (max-width: 768px) {
-          .logo {
-            max-width: 100px;  /* Changed from 200px to 100px */
-          }
-        }
-    .logo:hover {
-      filter: drop-shadow(0 0 25px rgba(40, 74, 209, 0.7));
-      transform: scale(1.03);
-    }
-
-    /* Coming Soon Text */
-    .coming-soon {
-      font-size: 1.8rem;
-      margin: 1rem 0 1.5rem;
-      letter-spacing: 3px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      animation: fade-in 1s ease-out forwards 0.5s;
-      font-family: 'Montserrat', sans-serif;
-    }
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* Additional Text Styling */
-    .additional-text {
-      margin-top: 1.5rem;
-    }
-    .additional-text p {
-      margin: 0.8rem 0;
-      font-size: 1.1rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slide-up 0.8s ease-out forwards;
-    }
-    .additional-text p:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    @keyframes slide-up {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Social Links */
-    .social-links {
-      margin-top: 2rem;
+      z-index: 10;
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-    }
-    .social-link {
-      color: #fff;
-      text-decoration: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-    }
-    .social-link:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      align-items: center;
+      padding: 0 2rem;
     }
 
-    /* Fish Animation */
-    .fish-container {
+    .nav-links {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-3px);
+      color: #ccc;
+    }
+
+    /* Logo and Title */
+    .header-bottom {
+      text-align: center;
+      margin-top: 100px;
+      padding: 20px;
+    }
+
+    .header-bottom .logo {
+      max-width: 100px;
+      margin-right: 10px;
+      animation: anchor-sway 8s ease-in-out infinite;
+    }
+
+    .header-bottom h1 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(90deg, #284ad1, #31479f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Content Section */
+    .content-section {
+      text-align: center;
+      margin: 20px 0 40px;
+      padding: 0 20px;
+    }
+
+    .content-section p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .welcome-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #284ad1, #31479f);
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .welcome-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 74, 209, 0.3);
+    }
+
+    /* Info Section */
+    .info-section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 40px auto;
+      padding: 20px;
+      max-width: 1200px;
+    }
+
+    .info-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      width: 45%;
+      text-align: left;
+      color: #fff;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-container h2 {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: #fff;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .info-container h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #284ad1, #31479f);
+      border-radius: 3px;
+    }
+
+    .info-container p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .info-container ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    .info-container ul li {
+      margin: 15px 0;
+      padding-left: 28px;
+      position: relative;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .info-container ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #284ad1;
+    }
+
+    .info-button {
+      padding: 12px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #284ad1, #31479f);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .info-button::before {
+      content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
     }
-    .fish {
+
+    .info-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 74, 209, 0.3);
+      color: #fff;
+    }
+
+    .info-button:hover::before {
+      left: 100%;
+    }
+
+    .info-button:active {
+      transform: translateY(0);
+    }
+
+    /* Affiliated Servers Section */
+    .affiliated-servers {
+      text-align: center;
+      padding: 40px 20px;
+      margin: 60px auto;
+      max-width: 1200px;
+    }
+
+    .affiliated-servers .section-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    .affiliated-servers .section-title::after {
+      content: '';
       position: absolute;
-      right: -100px;
-      width: 50px;
-      height: auto;
-      animation: swim 10s linear infinite;
-      opacity: 0.7;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #284ad1, #31479f);
+      border-radius: 3px;
     }
-    .fish:nth-child(1) {
-      bottom: 10%;
-      animation-delay: 0s;
+
+    .server-container {
+      margin-top: 30px;
     }
-    .fish:nth-child(2) {
-      bottom: 20%;
-      animation-delay: 3.33s;
+
+    .server-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .fish:nth-child(3) {
-      bottom: 30%;
-      animation-delay: 6.66s;
+
+    .server-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
     }
-    @keyframes swim {
-      0% {
-        transform: translateX(100px);
-      }
-      100% {
-        transform: translateX(calc(-100vw - 100px));
-      }
+
+    .server-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .server-info {
+      text-align: left;
+    }
+
+    .server-info h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .server-info p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      text-align: center;
+      color: #fff;
+      margin-top: 100px;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-logo-container {
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo {
+      width: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes anchor-sway {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .logo {
-        max-width: 200px;
+      .info-section {
+        flex-direction: column;
+        gap: 20px;
       }
-      .coming-soon {
-        font-size: 1.4rem;
+
+      .info-container {
+        width: 100%;
+        padding: 20px;
       }
-      .additional-text p {
+
+      .info-container h2 {
+        font-size: 1.5rem;
+      }
+
+      .info-container p {
         font-size: 1rem;
       }
-      .container {
-        padding: 1.5rem;
-        margin: 1rem;
+
+      .info-button {
+        width: 100%;
       }
-      .social-links {
+
+      .footer-links {
         flex-direction: column;
         gap: 1rem;
+      }
+
+      .header-bottom h1 {
+        font-size: 2rem;
+      }
+
+      .server-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .server-info {
+        text-align: center;
+      }
+    }
+
+    /* Logo Animation */
+    .logo {
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
-  <!-- Wave Background -->
-  <div class="wave-container">
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
+  <div class="page-container">
+    <!-- Wave Background -->
+    <div class="wave-container">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+    <div class="gradient-overlay"></div>
+
+    <!-- Header -->
+    <header>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="./homepage/features.html">Features</a>
+        <a href="./homepage/about.html">About</a>
+        <a href="./homepage/contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Logo and Title -->
+    <div class="header-bottom">
+      <img src="anchor-removebg-preview.png" alt="Anchor Logo" class="logo" />
+      <h1>Anchor Bot</h1>
+    </div>
+
+    <!-- Welcome Section -->
+    <section class="content-section">
+      <p>Welcome to Anchor Bot! Your automated assistant for all things anchors.</p>
+      <a href="https://discord.gg/YQYbvSQppB" target="_blank" class="welcome-button">Join our Discord</a>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="info-container">
+        <h2>Get Started</h2>
+        <p>Learn how to set up and use Anchor Bot effectively by following these simple steps:</p>
+        <ul>
+          <li>Create your free account.</li>
+          <li>Connect your communication channels.</li>
+          <li>Customize your bot settings to fit your needs.</li>
+          <li>Start engaging with your community seamlessly.</li>
+        </ul>
+        <a href="comingsoon.html" class="info-button">Coming Soon</a>
+      </div>
+      <div class="info-container">
+        <h2>Why Us</h2>
+        <p>Discover the benefits of using Anchor Bot for your community:</p>
+        <ul>
+          <li>Easy integration with multiple platforms.</li>
+          <li>User-friendly interface with intuitive controls.</li>
+          <li>Reliable support and regular feature updates.</li>
+          <li>Cost-effective, scalable solutions for all sizes.</li>
+        </ul>
+        <a href="./homepage/features.html" class="info-button">Find Out More</a>
+      </div>
+    </section>
+
+    <!-- Affiliated Servers Section -->
+    <section class="affiliated-servers">
+      <h2 class="section-title">Affiliated Servers</h2>
+      <div class="server-container">
+        <div class="server-card">
+          <img src="781547f51b8d4a80bda3ff52d089dff4.png" alt="Georgia State Roleplay Logo" class="server-logo">
+          <div class="server-info">
+            <h3>Georgia State Roleplay</h3>
+            <p>Official Partner Server</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-logo-container">
+        <img src="anchor-removebg-preview.png" alt="Anchor Bot Logo" class="footer-logo" />
+      </div>
+      <div class="footer-links">
+        <a href="#">Legal</a>
+        <a href="./homepage/terms.html">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        Anchor © All Rights Reserved
+      </div>
+    </footer>
   </div>
 
-  <!-- Main Content Container -->
-  <div class="container">
-    <div class="logo-container">
-      <img 
-        src="anchor-removebg-preview.png" 
-        alt="Anchor Logo" 
-        class="logo"
-      />
-    </div>
-    <p class="coming-soon">COMING SOON</p>
-    <div class="additional-text">
-      <p>Navigating Discord Management to New Depths</p>
-      <p>Dropping Anchor in 2025</p>
-    </div>
-    <div class="social-links">
-      <a href="https://discord.gg/Y9PTyMen" class="social-link">Join Our Discord</a>
-    </div>
-  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function adjustFooter() {
+        const footer = document.querySelector('footer');
+        const pageContainer = document.querySelector('.page-container');
+        const footerHeight = footer.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const contentHeight = pageContainer.offsetHeight;
 
-  <!-- Fish Animation -->
-  <div class="fish-container">
-    <img src="fish-svgrepo-com.svg" alt="Animated swimming fish" class="fish" />
-    <img src="fish-svgrepo-com.svg" alt="Animated swimming fish" class="fish" />
-    <img src="fish-svgrepo-com.svg" alt="Animated swimming fish" class="fish" />
-  </div>
+        if (contentHeight + footerHeight < windowHeight) {
+          pageContainer.style.minHeight = `${windowHeight - footerHeight}px`;
+        } else {
+          pageContainer.style.minHeight = 'auto';
+        }
+      }
+      adjustFooter();
+      window.addEventListener('resize', adjustFooter);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
